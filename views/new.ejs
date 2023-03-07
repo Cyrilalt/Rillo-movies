@@ -66,6 +66,10 @@
 					<%=image.img.data.toString('base64')%>">
 				<div>
 					<h5><%= image.name %></h5>
+					<form method="POST" action="/movie-delete">
+						<input type="hidden" name="id" value="<%= image._id %>">
+						<button type="submit">Delete</button>
+					</form>
 					
 
 <p><%= image.category %></p>
