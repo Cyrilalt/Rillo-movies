@@ -2,8 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-// const enforce = require('express-sslify');
-// app.use(enforce.HTTPS({trustProtoHeader: true}));
+const enforce = require('express-sslify');
+app.use(enforce.HTTPS({trustProtoHeader: true}));
 const bodyParser = require('body-parser');
 const _ = require('lodash');
 const ejs = require('ejs');
@@ -40,7 +40,7 @@ const mailUser = process.env.USER;
 const saltRoundString = process.env.SALTROUNDS;
 const saltRounds = parseInt(saltRoundString);
 
-mongoose.connect("mongodb://localhost:27017/movieDb",
+mongoose.connect(mongoUrl,
     { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
         if (err) {
             console.log(err)
