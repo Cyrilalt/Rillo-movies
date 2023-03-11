@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e06155f1.css",
+    "main.js": "/static/js/main.cc6dc9cf.js",
+    "static/js/787.dbd39f5b.chunk.js": "/static/js/787.dbd39f5b.chunk.js",
+    "static/media/sid_imac2015retina_front.png": "/static/media/sid_imac2015retina_front.128f46904eacfcddbce2.png",
+    "static/media/search.jpg": "/static/media/search.fc8673b157490149eb58.jpg",
+    "static/media/security.jpg": "/static/media/security.bb95b2abfb14df1db1f4.jpg",
+    "static/media/home_cinema.jpg": "/static/media/home_cinema.052c2bc0988a451538ea.jpg",
+    "static/media/watching_home.jpg": "/static/media/watching_home.94572f36deb5952dddaf.jpg",
+    "static/media/404.PNG": "/static/media/404.31302e69a9c2d38de5e3.PNG",
+    "static/media/logo.png": "/static/media/logo.2c34b7bf0dc64a6ae88a.png",
+    "static/media/illustration-intro.png": "/static/media/illustration-intro.c20d85255009f195b4a6.png",
+    "static/media/social.svg": "/static/media/social.00c1246123cae373052e8bc11802d5a9.svg",
+    "static/media/bg-pattern-mobile-nav.svg": "/static/media/bg-pattern-mobile-nav.b2fceba3d85314c10486.svg",
+    "index.html": "/index.html",
+    "main.e06155f1.css.map": "/static/css/main.e06155f1.css.map",
+    "main.cc6dc9cf.js.map": "/static/js/main.cc6dc9cf.js.map",
+    "787.dbd39f5b.chunk.js.map": "/static/js/787.dbd39f5b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e06155f1.css",
+    "static/js/main.cc6dc9cf.js"
+  ]
+}

@@ -8,10 +8,10 @@
 </head>
 
 <body>
-	<h1>To Upload Image on mongoDB</h1>
+	<h1>Save New Movie</h1>
 	<hr>
 	<div>
-		<form action="/fresh/new" method="POST" enctype="multipart/form-data">
+		<form action="/fresh/new" method="POST">
 			<div>
 				<label for="name">Name</label>
 				<input type="text" id="name" placeholder="Name"
@@ -32,22 +32,22 @@
 				<input type="text" id="name" placeholder="Name"
 					value="" name="rating" required>
                 <label for="desc">description</label>
-				<input type="text" id="name" placeholder="Name"
-					value="" name="description" required>
+				<textarea id="name" placeholder="description"
+				value="" name="description" required></textarea>
                 <label for="desc">snvl</label>
-				<input type="text" id="name" placeholder="Name"
+				<input type="text" id="name" placeholder="snvl"
 					value="" name="snvl" required>
                 <label for="desc">trailer</label>
-				<input type="text" id="name" placeholder="Name"
+				<input type="text" id="name" placeholder="trailer"
 					value="" name="trailer" required>
                 <label for="desc">download</label>
-				<input type="text" id="name" placeholder="Name"
+				<input type="text" id="name" placeholder="download"
 					value="" name="download" required>
 			</div>
 			<div>
 				<label for="image">Upload Image</label>
-				<input type="file" id="image"
-					name="image" value="" required>
+				<input type="text" id="image"
+					name="image" value="" placeholder="image Url" required>
 			</div>
 			<div>
 				<button type="submit">Submit</button>
@@ -62,8 +62,7 @@
 		<% items.forEach(function(image) { %>
 		<div>
 			<div>
-				<img src="data:image/<%=image.img.contentType%>;base64,
-					<%=image.img.data.toString('base64')%>">
+				<img src="image.img%>">
 				<div>
 					<h5><%= image.name %></h5>
 					<form method="POST" action="/movie-delete">

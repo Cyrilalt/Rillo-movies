@@ -2,10 +2,11 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-const enforce = require('express-sslify');
-app.use(enforce.HTTPS({trustProtoHeader: true}));
+// const enforce = require('express-sslify');
+// app.use(enforce.HTTPS({trustProtoHeader: true}));
 const bodyParser = require('body-parser');
 const _ = require('lodash');
+const cors = require('cors');
 const ejs = require('ejs');
 const fs = require('fs');
 const path = require('path');
@@ -21,16 +22,19 @@ const movie = require('./models/MovieModel');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(cors());
 app.use(express.static("public"));
 
-app.use((req, res, next)=> {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// app.use((req, res, next)=> {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 // Set EJS as templating engine
 app.set("view engine", "ejs");
+
+app.use(express.static("build"));
 
 
 const mongoUrl = process.env.MONGOURL;
@@ -79,8 +83,8 @@ const storage = multer.diskStorage({
       });
   });
 
-  app.post('/fresh/new', upload.single('image'),(req, res)=> {
-    const {name, category, type, rating, description, snvl, trailer, download, image} = req.body;
+  app.post('/fresh/new', (req, res)=> {
+    const {name, category, type, rating, description, snvl, trailer, download, img} = req.body;
 
     const newMovie = new movie ({
         name,
@@ -91,17 +95,16 @@ const storage = multer.diskStorage({
         trailer,
         download,
         description,
-        img: { 
-            
-            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)), 
-
-            contentType: 'image/*'
-
-        }
+        img
     });
     newMovie.save();
     res.redirect('/fresh/new');
   });
+
+  app.get('*', (req, res)=> {
+    app.use(express.static("build"));
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
   app.post('/movie-delete', (req, res)=> {
       const {id} = req.body;
@@ -719,9 +722,9 @@ app.post('/login',function(req, res){
         } else if(!items.verified) {
             res.send({
                 message:"Redirect!!",
-                user: {}
+                user: items
             })
-        }else {
+        } else {
                 bcrypt.compare(password, items.password, function(err, response){
                         if(response === true){
                             res.send({
@@ -795,7 +798,7 @@ app.get('/home', function(req, res, next){
                     trailer: item.trailer, 
                     download: item.download,
                     description: item.description,
-                    img: `data:item/${item.img.contentType};base64,${item.img.data.toString('base64')}`
+                    img: item.img
                 };
                 movies.push(movieStat);
             });
@@ -1071,7 +1074,7 @@ app.post('/search', (req, res, next)=> {
                         trailer: item.trailer, 
                         download: item.download,
                         description: item.description,
-                        img: `data:item/${item.img.contentType};base64,${item.img.data.toString('base64')}`
+                        img: item.img
                     };
                     movies.push(movieStat);
                 });
