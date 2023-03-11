@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.e06155f1.css",
+    "main.css": "/static/css/main.6aa3fbe6.css",
     "main.js": "/static/js/main.cc6dc9cf.js",
     "static/js/787.dbd39f5b.chunk.js": "/static/js/787.dbd39f5b.chunk.js",
     "static/media/sid_imac2015retina_front.png": "/static/media/sid_imac2015retina_front.128f46904eacfcddbce2.png",
@@ -14,12 +14,12 @@
     "static/media/social.svg": "/static/media/social.00c1246123cae373052e8bc11802d5a9.svg",
     "static/media/bg-pattern-mobile-nav.svg": "/static/media/bg-pattern-mobile-nav.b2fceba3d85314c10486.svg",
     "index.html": "/index.html",
-    "main.e06155f1.css.map": "/static/css/main.e06155f1.css.map",
+    "main.6aa3fbe6.css.map": "/static/css/main.6aa3fbe6.css.map",
     "main.cc6dc9cf.js.map": "/static/js/main.cc6dc9cf.js.map",
     "787.dbd39f5b.chunk.js.map": "/static/js/787.dbd39f5b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e06155f1.css",
+    "static/css/main.6aa3fbe6.css",
     "static/js/main.cc6dc9cf.js"
   ]
 }
