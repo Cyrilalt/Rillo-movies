@@ -22,14 +22,8 @@ const movie = require('./models/MovieModel');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors());
+//app.use(cors());
 app.use(express.static("public"));
-
-// app.use((req, res, next)=> {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
 
 // Set EJS as templating engine
 app.set("view engine", "ejs");
@@ -83,8 +77,8 @@ const storage = multer.diskStorage({
       });
   });
 
-  app.post('/fresh/new', (req, res)=> {
-    const {name, category, type, rating, description, snvl, trailer, download, img} = req.body;
+  app.post('/fresh/new', upload.single('image'), (req, res, next)=> {
+    const {name, category, type, rating, description, snvl, trailer, download} = req.body;
 
     const newMovie = new movie ({
         name,
@@ -95,7 +89,13 @@ const storage = multer.diskStorage({
         trailer,
         download,
         description,
-        img
+        img: { 
+            
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)), 
+
+            contentType: 'image/*'
+
+        }
     });
     newMovie.save();
     res.redirect('/fresh/new');
@@ -742,8 +742,9 @@ app.post('/login',function(req, res){
     });
 });
 
-app.get('/user/:userId', (req, res, next)=> {
+app.post('/user/:userId', (req, res, next)=> {
     const {userId} = req.params;
+    console.log(userId);
     User.findOne({_id: userId}, (err, user)=> {
         if(err) {
             console.log(err);
@@ -770,7 +771,7 @@ app.get('/user/:userId', (req, res, next)=> {
     })
 })
 
-app.get('/home', function(req, res, next){
+app.post('/home', function(req, res, next){
     movie.find({}, (err, items) => {
         if (err) {
             console.log(err);
@@ -798,7 +799,7 @@ app.get('/home', function(req, res, next){
                     trailer: item.trailer, 
                     download: item.download,
                     description: item.description,
-                    img: item.img
+                    img: `data:item/${item.img.contentType};base64,${item.img.data.toString('base64')}`
                 };
                 movies.push(movieStat);
             });
@@ -1074,7 +1075,7 @@ app.post('/search', (req, res, next)=> {
                         trailer: item.trailer, 
                         download: item.download,
                         description: item.description,
-                        img: item.img
+                        img: `data:item/${item.img.contentType};base64,${item.img.data.toString('base64')}`
                     };
                     movies.push(movieStat);
                 });

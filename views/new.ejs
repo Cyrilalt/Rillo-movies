@@ -11,7 +11,8 @@
 	<h1>Save New Movie</h1>
 	<hr>
 	<div>
-		<form action="/fresh/new" method="POST">
+		<form action="/fresh/new" method="POST" enctype="multipart/form-data">
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptates suscipit veritatis eligendi praesentium earum facilis quaerat. Molestiae soluta similique assumenda, dicta, id iusto dolor quae aliquam harum sed odit?</p>
 			<div>
 				<label for="name">Name</label>
 				<input type="text" id="name" placeholder="Name"
@@ -46,8 +47,8 @@
 			</div>
 			<div>
 				<label for="image">Upload Image</label>
-				<input type="text" id="image"
-					name="image" value="" placeholder="image Url" required>
+				<input type="file" id="image"
+					name="image" required>
 			</div>
 			<div>
 				<button type="submit">Submit</button>
@@ -62,7 +63,9 @@
 		<% items.forEach(function(image) { %>
 		<div>
 			<div>
-				<img src="image.img%>">
+				<img src="data:image/<%=image.img.contentType%>;base64, 
+
+                     <%=image.img.data.toString('base64')%>" alt="<%= image.name %>"height="100">
 				<div>
 					<h5><%= image.name %></h5>
 					<form method="POST" action="/movie-delete">

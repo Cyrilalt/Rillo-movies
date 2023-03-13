@@ -10,7 +10,11 @@ const movieSchema = new Schema({
     trailer: String,
     download: String,
     description: String,
-    img: String
+    img:
+        {
+            data: Buffer,
+            contentType: String
+        }
 });
 
 
