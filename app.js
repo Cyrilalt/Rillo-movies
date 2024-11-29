@@ -33,7 +33,7 @@ app.use(express.static("build"));
 
 const mongoUrl = process.env.MONGOURL;
 
-const mailUser = process.env.USER;
+const mailUser = process.env.ZOHOUSER;
 
 const saltRoundString = process.env.SALTROUNDS;
 const saltRounds = parseInt(saltRoundString);
